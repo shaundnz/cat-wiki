@@ -4,7 +4,7 @@ import Logo from "../elements/Logo";
 
 const Header = () => {
   return (
-    <Flex>
+    <Flex py="2">
       <Logo />
     </Flex>
   );

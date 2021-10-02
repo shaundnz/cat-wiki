@@ -1,12 +1,14 @@
 import { Box } from "@chakra-ui/layout";
 import React from "react";
+import Footer from "../modules/Footer";
 import Header from "../modules/Header";
 
 const DefaultLayout: React.FC = ({ children }) => {
   return (
-    <Box px={[3, 3, 6]} py="3">
+    <Box px="6">
       <Header />
       {children}
+      <Footer />
     </Box>
   );
 };
