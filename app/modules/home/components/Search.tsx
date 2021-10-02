@@ -19,12 +19,13 @@ import {
   AutoCompleteList,
 } from "@choc-ui/chakra-autocomplete";
 import { SearchIcon } from "@chakra-ui/icons";
-import React from "react";
+import React, { useContext, useEffect } from "react";
+import { BreedsContext } from "../../../common/context/BreedsContext";
 
 const Search: React.FC<InputGroupProps> = ({ ...props }) => {
   const inputSize = useBreakpointValue(["md", "lg"]);
 
-  const breeds = ["nigeria", "japan", "india", "united states", "south korea"];
+  const breedsContext = useContext(BreedsContext);
 
   return (
     <AutoComplete openOnFocus listAllValuesOnFocus>
@@ -43,15 +44,15 @@ const Search: React.FC<InputGroupProps> = ({ ...props }) => {
         />
       </InputGroup>
       <AutoCompleteList>
-        {breeds.map((breed, cid) => {
+        {breedsContext.breeds.map((breed, cid) => {
           return (
             <AutoCompleteItem
               key={`option-${cid}`}
-              value={breed}
+              value={breed.name}
               textTransform="capitalize"
               color="black"
             >
-              {breed}
+              {breed.name}
             </AutoCompleteItem>
           );
         })}
