@@ -6,8 +6,18 @@ import {
   Flex,
   Image,
   useBreakpointValue,
+  useDisclosure,
+  Modal,
+  ModalOverlay,
+  ModalBody,
+  ModalCloseButton,
+  ModalContent,
+  ModalHeader,
+  InputGroup,
+  Input,
+  InputRightElement,
 } from "@chakra-ui/react";
-import React from "react";
+import { SearchIcon } from "@chakra-ui/icons";
 import Search from "./Search";
 
 const MainContainerTop = () => {
@@ -18,6 +28,8 @@ const MainContainerTop = () => {
   ]);
 
   const headingSize = useBreakpointValue(["lg", "2xl"]);
+
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <Flex
@@ -54,7 +66,31 @@ const MainContainerTop = () => {
           Get to know more about your cat breed
         </Text>
         <Box pt={[0, 0, 6]}>
-          <Search />
+          <Search display={["none", "block"]} />
+          <InputGroup size="sm" display={["block", "none"]} onClick={onOpen}>
+            <Input
+              bg="white"
+              color="black"
+              placeholder="Search"
+              borderRadius="full"
+            />
+            <InputRightElement
+              fontSize="sm"
+              children={<SearchIcon color="gray.300" />}
+            />
+          </InputGroup>
+          <Modal onClose={onClose} size="md" isOpen={isOpen}>
+            <ModalOverlay />
+            <ModalContent>
+              <ModalCloseButton />
+              <ModalHeader></ModalHeader>
+              <ModalBody py="4" pb="6">
+                <Box>
+                  <Search />
+                </Box>
+              </ModalBody>
+            </ModalContent>
+          </Modal>
         </Box>
       </VStack>
       <Box></Box>

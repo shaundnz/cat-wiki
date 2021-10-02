@@ -10,6 +10,7 @@ import {
   useBreakpointValue,
   InputGroupProps,
   Select,
+  FormControl,
 } from "@chakra-ui/react";
 import {
   AutoComplete,
@@ -21,22 +22,41 @@ import { SearchIcon } from "@chakra-ui/icons";
 import React from "react";
 
 const Search: React.FC<InputGroupProps> = ({ ...props }) => {
-  const inputSize = useBreakpointValue(["sm", "md", "lg"]);
+  const inputSize = useBreakpointValue(["md", "lg"]);
 
-  const breed = ["nigeria", "japan", "india", "united states", "south korea"];
+  const breeds = ["nigeria", "japan", "india", "united states", "south korea"];
 
   return (
-    <>
+    <AutoComplete openOnFocus listAllValuesOnFocus>
       <InputGroup size={inputSize} {...props}>
-        <Input
-          bg="white"
-          color="black"
-          placeholder="Search"
-          borderRadius="full"
+        <Box w="100%">
+          <AutoCompleteInput
+            bg="white"
+            color="black"
+            placeholder="Search"
+            borderRadius="full"
+          />
+        </Box>
+        <InputRightElement
+          fontSize={inputSize}
+          children={<SearchIcon color="gray.300" />}
         />
-        <InputRightElement children={<SearchIcon color="gray.300" />} />
       </InputGroup>
-    </>
+      <AutoCompleteList>
+        {breeds.map((breed, cid) => {
+          return (
+            <AutoCompleteItem
+              key={`option-${cid}`}
+              value={breed}
+              textTransform="capitalize"
+              color="black"
+            >
+              {breed}
+            </AutoCompleteItem>
+          );
+        })}
+      </AutoCompleteList>
+    </AutoComplete>
   );
 };
 
