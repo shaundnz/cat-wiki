@@ -7,16 +7,48 @@ import {
   HStack,
   Flex,
   Spacer,
+  Link,
 } from "@chakra-ui/react";
 import { Center } from "@chakra-ui/react";
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import SquareImage from "../../../common/components/elements/SquareImage";
 import CatImageWithTitle from "./CatImageWithTitle";
 import "@fontsource/montserrat/700.css";
+import { BreedsContext } from "../../../common/context/BreedsContext";
 
 const MainComponentBottom = () => {
   const breedHeadingSize = useBreakpointValue(["sm", "md"]);
   const headingSize = useBreakpointValue(["lg", "2xl"]);
+  const [breedsIndex, setBreedsIndex] = useState([0, 1, 2, 3]);
+
+  const breedsContext = useContext(BreedsContext);
+
+  const getRandomInt = (max: number) => {
+    return Math.floor(Math.random() * max);
+  };
+
+  const generateRandomIndexArray = (n: number, max: number) => {
+    const numbers: number[] = [];
+    let i = 0;
+    while (numbers.length < n) {
+      const rand = getRandomInt(max);
+      if (!numbers.includes(rand)) {
+        numbers.push(rand);
+        i++;
+      }
+    }
+    return numbers;
+  };
+
+  useEffect(() => {
+    if (breedsContext.breeds.length > 4) {
+      setBreedsIndex(generateRandomIndexArray(4, breedsContext.breeds.length));
+    }
+  }, [breedsContext.breeds]);
+
+  if (breedsContext.breeds.length === 0) {
+    return <Heading>Loading...</Heading>;
+  }
 
   return (
     <VStack
@@ -28,7 +60,7 @@ const MainComponentBottom = () => {
       spacing="5"
     >
       <Heading size={breedHeadingSize} as="h4" fontWeight="medium">
-        Most Searched Breeds
+        Browse All Breeds
       </Heading>
       <Flex>
         <Heading
@@ -52,26 +84,15 @@ const MainComponentBottom = () => {
       </Flex>
 
       <Grid templateColumns={"1fr 1fr"} display={["grid", "grid", "none"]}>
-        <CatImageWithTitle
-          src={"https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg"}
-          title={"Cat Name 1"}
-          m={1.5}
-        />
-        <CatImageWithTitle
-          src={"https://cdn2.thecatapi.com/images/ozEvzdVM-.jpg"}
-          title={"Cat Name 2"}
-          m={1.5}
-        />
-        <CatImageWithTitle
-          src={"https://cdn2.thecatapi.com/images/hBXicehMA.jpg"}
-          title={"Cat Name 3"}
-          m={1.5}
-        />
-        <CatImageWithTitle
-          src={"https://cdn2.thecatapi.com/images/xnsqonbjW.jpg"}
-          title={"Cat Name 4"}
-          m={1.5}
-        />
+        {breedsIndex.map((index) => (
+          <Link href={`/breeds/${breedsContext.breeds[index].id}`}>
+            <CatImageWithTitle
+              src={breedsContext.breeds[index].image.url}
+              title={breedsContext.breeds[index].name}
+              m={1.5}
+            />
+          </Link>
+        ))}
       </Grid>
       <HStack
         justify="space-between"
@@ -79,26 +100,14 @@ const MainComponentBottom = () => {
         spacing="8"
         display={["none", "none", "flex"]}
       >
-        <CatImageWithTitle
-          src={"https://cdn2.thecatapi.com/images/0XYvRd7oD.jpg"}
-          title={"Cat Name 1"}
-          w="22%"
-        />
-        <CatImageWithTitle
-          src={"https://cdn2.thecatapi.com/images/ozEvzdVM-.jpg"}
-          title={"Cat Name 2"}
-          w="22%"
-        />
-        <CatImageWithTitle
-          src={"https://cdn2.thecatapi.com/images/hBXicehMA.jpg"}
-          title={"Cat Name 3"}
-          w="22%"
-        />
-        <CatImageWithTitle
-          src={"https://cdn2.thecatapi.com/images/xnsqonbjW.jpg"}
-          title={"Cat Name 4"}
-          w="22%"
-        />
+        {breedsIndex.map((index) => (
+          <Link href={`/breeds/${breedsContext.breeds[index].id}`} w="22%">
+            <CatImageWithTitle
+              src={breedsContext.breeds[index].image.url}
+              title={breedsContext.breeds[index].name}
+            />
+          </Link>
+        ))}
       </HStack>
     </VStack>
   );

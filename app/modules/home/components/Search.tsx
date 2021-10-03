@@ -11,6 +11,7 @@ import {
   InputGroupProps,
   Select,
   FormControl,
+  Link,
 } from "@chakra-ui/react";
 import {
   AutoComplete,
@@ -21,14 +22,23 @@ import {
 import { SearchIcon } from "@chakra-ui/icons";
 import React, { useContext, useEffect } from "react";
 import { BreedsContext } from "../../../common/context/BreedsContext";
+import { useRouter } from "next/router";
 
 const Search: React.FC<InputGroupProps> = ({ ...props }) => {
   const inputSize = useBreakpointValue(["md", "lg"]);
 
   const breedsContext = useContext(BreedsContext);
 
+  const router = useRouter();
+
   return (
-    <AutoComplete openOnFocus listAllValuesOnFocus>
+    <AutoComplete
+      openOnFocus
+      listAllValuesOnFocus
+      onSelectOption={(params) => {
+        router.push(`/breeds/${params.optionValue}`);
+      }}
+    >
       <InputGroup size={inputSize} {...props}>
         <Box w="100%">
           <AutoCompleteInput
@@ -48,7 +58,8 @@ const Search: React.FC<InputGroupProps> = ({ ...props }) => {
           return (
             <AutoCompleteItem
               key={`option-${cid}`}
-              value={breed.name}
+              value={breed.id}
+              label={breed.name}
               textTransform="capitalize"
               color="black"
             >

@@ -1,15 +1,15 @@
-import { Box } from "@chakra-ui/layout";
+import { Flex } from "@chakra-ui/layout";
 import React from "react";
 import Footer from "../modules/Footer";
 import Header from "../modules/Header";
 
 const DefaultLayout: React.FC = ({ children }) => {
   return (
-    <Box px="6">
+    <Flex direction="column" px="6" minH="100vh">
       <Header />
       {children}
       <Footer />
-    </Box>
+    </Flex>
   );
 };
 

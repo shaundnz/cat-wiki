@@ -1,10 +1,11 @@
 import React from "react";
-import { Box, Flex, Heading, Image } from "@chakra-ui/react";
+import { Box, Flex, Heading, Image, Link } from "@chakra-ui/react";
 import Logo from "../elements/Logo";
 
 const Footer = () => {
   return (
     <Flex
+      mt="auto"
       bg="black"
       borderTopRadius="xl"
       alignItems={["normal", "center"]}
@@ -12,9 +13,10 @@ const Footer = () => {
       flexDirection={["column", "row"]}
       px="6"
       pt="2"
-      mt="2"
     >
-      <Image src="/CatwikiLogoWhite.svg" w="128px" />
+      <Link href="/">
+        <Image src="/CatwikiLogoWhite.svg" w="128px" />
+      </Link>
       <Heading color="white" fontWeight="thin" as="h6" size="xs" py="2">
         Created by <span style={{ fontWeight: 700 }}>Shaun Price</span>
       </Heading>

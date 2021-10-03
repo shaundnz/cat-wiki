@@ -16,20 +16,29 @@ import {
   InputGroup,
   Input,
   InputRightElement,
+  chakra,
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import Search from "./Search";
+import NextImage from "next/image";
+import { ChakraNextImage } from "../../../common/components/elements/ChakraNextImage";
 
 const MainContainerTop = () => {
   const imageSource = useBreakpointValue([
-    "/images/Heroimagesm.png",
-    "/images/Heroimagemd.png",
-    "/images/Heroimagelg.png",
+    "/images/HeroImagesm.png",
+    "/images/HeroImagemd.png",
+    "/images/HeroImagelg.png",
   ]);
 
   const headingSize = useBreakpointValue(["lg", "2xl"]);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const HeroImage = chakra(NextImage, {
+    baseStyle: { minH: "140px", objectFit: "cover" },
+    shouldForwardProp: (prop) =>
+      ["width", "height", "src", "alt"].includes(prop),
+  });
 
   return (
     <Flex
@@ -93,8 +102,11 @@ const MainContainerTop = () => {
           </Modal>
         </Box>
       </VStack>
-      <Box></Box>
-      <Image src={imageSource} minH="140px" objectFit="cover" />
+      <Image
+        src={imageSource ? imageSource : "/images/HeroImagelg.png"}
+        minH="140px"
+        objectFit="cover"
+      />
     </Flex>
   );
 };

@@ -1,11 +1,13 @@
-import { Flex } from "@chakra-ui/layout";
+import { Flex, Link } from "@chakra-ui/layout";
 import React from "react";
 import Logo from "../elements/Logo";
 
 const Header = () => {
   return (
     <Flex py="2">
-      <Logo />
+      <Link href="/">
+        <Logo />
+      </Link>
     </Flex>
   );
 };
