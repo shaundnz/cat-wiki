@@ -17,6 +17,7 @@ import {
   Input,
   InputRightElement,
   chakra,
+  Spacer,
 } from "@chakra-ui/react";
 import { SearchIcon } from "@chakra-ui/icons";
 import Search from "./Search";
@@ -102,6 +103,7 @@ const MainContainerTop = () => {
           </Modal>
         </Box>
       </VStack>
+      <Spacer />
       <Image
         src={imageSource ? imageSource : "/images/HeroImagelg.png"}
         minH="140px"
