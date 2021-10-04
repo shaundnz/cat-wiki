@@ -3,7 +3,7 @@ import React from "react";
 import Search from "./Search";
 import "@fontsource/mystery-quest/400.css";
 import MainContainerTop from "./MainContainerTop";
-import MainComponentBottom from "./MainComponentBottom";
+import MainComponentBottom from "./MainContainerBottom";
 
 const MainContainer = () => {
   return (

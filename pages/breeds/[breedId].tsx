@@ -7,6 +7,7 @@ import { ParsedUrlQuery } from "querystring";
 import DefaultLayout from "../../app/common/components/layout/DefaultLayout";
 import BreedInfo from "../../app/modules/breeds/components/modules/BreedInfo";
 import BreedPhotos from "../../app/modules/breeds/components/modules/BreedPhotos";
+import Head from "next/head";
 
 interface Params extends ParsedUrlQuery {
   breedId: string;
@@ -22,10 +23,15 @@ const Breed: React.FC<Props> = (props) => {
   const { breedId } = router.query;
 
   return (
-    <DefaultLayout>
-      <BreedInfo breed={props.breed} />
-      <BreedPhotos imageUrls={props.imageUrls} />
-    </DefaultLayout>
+    <>
+      <Head>
+        <title>{props.breed.name}</title>
+      </Head>
+      <DefaultLayout>
+        <BreedInfo breed={props.breed} />
+        <BreedPhotos imageUrls={props.imageUrls} />
+      </DefaultLayout>
+    </>
   );
 };
 
@@ -59,8 +65,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 interface ImageResponse {
   id: string;
   url: string;
-  width: string;
-  height: string;
+  width: number;
+  height: number;
 }
 
 export const getStaticProps: GetStaticProps<Props> = async (context) => {
@@ -75,6 +81,19 @@ export const getStaticProps: GetStaticProps<Props> = async (context) => {
       },
     }
   );
+
+  if (breedRes.data.image == null) {
+    const imageRes = await axios.get<ImageResponse[]>(
+      `https://api.thecatapi.com/v1/images/search?limit=1&breed_id=${breedRes.data.id}`
+    );
+
+    breedRes.data.image = {
+      height: imageRes.data[0].height,
+      width: imageRes.data[0].width,
+      url: imageRes.data[0].url,
+      id: imageRes.data[0].id,
+    };
+  }
 
   const imagesRes = await axios.get<ImageResponse[]>(
     `https://api.thecatapi.com/v1/images/search?limit=8&page=1&order=Random&size=thumb&breed_id=${breedId}`,

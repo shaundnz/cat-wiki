@@ -18,7 +18,7 @@ const BreedInfo: React.FC<Props> = ({ breed }) => {
           borderRadius="3xl"
           m="0 auto"
           w={["90%", "80%"]}
-          src={`https://cdn2.thecatapi.com/images/${breed.reference_image_id}.jpg`}
+          src={breed.image.url}
         />
       </Box>
       <Stack w={["100%", "60%"]} spacing={6}>

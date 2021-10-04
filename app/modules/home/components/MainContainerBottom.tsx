@@ -16,7 +16,7 @@ import CatImageWithTitle from "./CatImageWithTitle";
 import "@fontsource/montserrat/700.css";
 import { BreedsContext } from "../../../common/context/BreedsContext";
 
-const MainComponentBottom = () => {
+const MainContainerBottom = () => {
   const breedHeadingSize = useBreakpointValue(["sm", "md"]);
   const headingSize = useBreakpointValue(["lg", "2xl"]);
   const [breedsIndex, setBreedsIndex] = useState([0, 1, 2, 3]);
@@ -60,7 +60,7 @@ const MainComponentBottom = () => {
       spacing="5"
     >
       <Heading size={breedHeadingSize} as="h4" fontWeight="medium">
-        Browse All Breeds
+        <Link href="/breeds">Browse All Breeds</Link>
       </Heading>
       <Flex>
         <Heading
@@ -72,6 +72,7 @@ const MainComponentBottom = () => {
           66+ Breeds for you to discover
         </Heading>
         <Spacer />
+
         <Heading
           as="h6"
           size="sm"
@@ -79,7 +80,7 @@ const MainComponentBottom = () => {
           opacity="60%"
           alignSelf="flex-end"
         >
-          SEE MORE
+          <Link href="/breeds">SEE MORE</Link>
         </Heading>
       </Flex>
 
@@ -113,4 +114,4 @@ const MainComponentBottom = () => {
   );
 };
 
-export default MainComponentBottom;
+export default MainContainerBottom;
