@@ -1,34 +1,40 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+![CatWiki Logo](/public/CatwikiLogo.svg)
 
-## Getting Started
+# Cat Wiki
 
-First, run the development server:
+[Cat Wiki](https://cat-wiki-shaundnz.netlify.app/) is your one stop shop for all information related to our feline friends! Search for different breeds or browse them all!
 
-```bash
-npm run dev
-# or
-yarn dev
-```
+This website is hosted on Netlify, you can check it out [here!](https://cat-wiki-shaundnz.netlify.app/)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+This website is created using NextJS's static site generation features for extremely fast load times. All pages are generated at build time by using the NextJS `GetStaticProps` function and consuming data from the [The Cat API](https://thecatapi.com/).
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+The website was built using a mobile first approach, it is fully responsive. Responsive styles implemented with the features provided by ChakraUI.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+<table>
+  <tr>
+    <td>Home Page</td>
+     <td>Breed Page</td>
+     <td>All Breeds Page</td>
+  </tr>
+  <tr>
+    <td><img src="https://i.imgur.com/7D0ADjR.png"></td>
+    <td><img src="https://i.imgur.com/KhyKHTK.png"></td>
+    <td><img src="https://i.imgur.com/JQSbJxq.png"></td>
+  </tr>
+ </table>
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+### Motivation
+This project was built to further my skills with full stack development and practice using the powerful static site generation (SSG) features provided by NextJS. 
 
-## Learn More
+This project presented an ideal use case for SSG as the data from the API does not change often, thus all the HTML for the pages can be generated at build time. These pages can be served quickly as the client does not need to make an extra request to the API for the data to hydrate a page.
 
-To learn more about Next.js, take a look at the following resources:
+### Built With:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Next.JS
+- React
+- TypeScript
+- ChakraUI
+- Netlify
+- The Cat API
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Additional libraries used includes `axios`.
