@@ -1,4 +1,4 @@
-![CatWiki Logo](/public/CatwikiLogo.svg)
+<img src="public/CatwikiLogo.svg" width="400px">
 
 # Cat Wiki
 
@@ -8,7 +8,7 @@ This website is hosted on Netlify, you can check it out [here!](https://cat-wiki
 
 This website is created using NextJS's static site generation features for extremely fast load times. All pages are generated at build time by using the NextJS `GetStaticProps` function and consuming data from the [The Cat API](https://thecatapi.com/).
 
-The website was built using a mobile first approach, it is fully responsive. Responsive styles implemented with the features provided by ChakraUI.
+The website was built using a mobile first approach and is fully responsive. Responsive styles were implemented with the features provided by ChakraUI.
 
 <table>
   <tr>
